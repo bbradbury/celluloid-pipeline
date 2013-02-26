@@ -35,7 +35,6 @@ class PipelineSupervisionGroup < Celluloid::SupervisionGroup
   def add klass, options
     existing_end_of_pipeline_member = @members.last
     add_without_pipeline klass, options
-    self.next_in_pipeline = @members.last.actor if @members.size == 1
     existing_end_of_pipeline_member.actor.next_in_pipeline = @members.last.actor if existing_end_of_pipeline_member
   end
 end
